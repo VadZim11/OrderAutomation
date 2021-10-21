@@ -1,27 +1,43 @@
 import { LightningElement, wire } from 'lwc';
 import getAccounts from '@salesforce/apex/PicklistHelper.getAccounts';
-
+import getMounths from '@salesforce/apex/PicklistHelper.getMounths';
 export default class TwoPicklistPage extends LightningElement {
     
-    profileOptionsList;
-    selectedProfile;
+    accountList;
+    selectedAccount;
+    mountsList;
+    selectedMounths;
        
     @wire(getAccounts) 
-    retrieveProfiles({error,data}){
-        let tempArray = [];
+    retrieveAccounts({error,data}){
+        let accountArray = [];
         if(data){
             for(let key in data){
-                tempArray.push({label:data[key],value:key});
+                accountArray.push({label:data[key],value:key});
             }
         }
-        this.profileOptionsList=tempArray;
+        this.accountList=accountArray;
+    }
+
+    @wire(getMounths) 
+    retrieveMounths({error,data}){
+        let mounthsArray = [];
+        if(data){
+            for(let key in data){
+                mounthsArray.push({label:data[key],value:key});
+            }
+        }
+        this.mountsList=mounthsArray;
     }
 
      
-    /*hadnling profiles*/
-    handleProfileChange(event){
-        this.selectedProfile = event.target.value;
-        this.template.querySelector("[data-id='selectId']").value = this.selectedProfile;
+    /*hadnling*/
+    handleAccountChange(event){
+        this.selectedAccount = event?.detail && event?.detail?.value;
+    }
+
+    handleMounthstChange(event){
+        this.selectedMounths = event?.detail && event?.detail?.value;
     }
    
 }
