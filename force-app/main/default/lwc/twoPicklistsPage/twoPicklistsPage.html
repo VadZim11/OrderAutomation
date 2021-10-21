@@ -1,0 +1,17 @@
+<template>
+        <!--Load profiles from apex in combo box-->
+     <lightning-card title="Combo box with Profile list from apex" icon-name="custom:custom67">
+        <template if:true={profileOptionsList}>
+            <div class="slds-var-m-around_medium">
+                <lightning-combobox
+                name="Profile"
+                label="Profile"
+                value={selectedProfile}
+                placeholder="Select Profile"
+                options={profileOptionsList}
+                onchange={handleProfileChange} ></lightning-combobox>    
+                <p>Selected Profile is:<b>{selectedProfile}</b></p>
+            </div>
+        </template>      
+    </lightning-card> <br/> 
+</template>   
