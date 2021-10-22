@@ -1,7 +1,7 @@
 import { LightningElement, wire } from 'lwc';
-import getAccounts from '@salesforce/apex/PicklistHelper.getAccounts';
-import getMounths from '@salesforce/apex/PicklistHelper.getMounths';
-export default class TwoPicklistPage extends LightningElement {
+import getAccounts from '@salesforce/apex/SelectorAccountMounthHelper.getAccounts';
+import getMounths from '@salesforce/apex/SelectorAccountMounthHelper.getMounths';
+export default class SelectorAccountMounth extends LightningElement {
     
     accountList;
     selectedAccount;
