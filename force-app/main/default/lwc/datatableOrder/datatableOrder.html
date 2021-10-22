@@ -1,8 +1,10 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
 <template>
     <lightning-card title="Datatable styling in lwc">
         <template if:true={tableData}>
             <div class="myTable">
-            <lightning-datatable
+            <lightning-datatable class = "slds-max-medium-table_stacked"
             key-field="Id"
             data={tableData}
             columns={columns}
