@@ -1,0 +1,91 @@
+<template>
+
+        <!--Load accounts in combo box-->
+     <lightning-card title="Combo box with Accounts">
+        <template if:true={accountList}>
+            <div class="slds-var-m-around_medium">
+                <lightning-combobox
+                name="AccounList"
+                label="Account List"
+                value={selectedAccount}
+                placeholder="Select Account"
+                options={accountList}
+                onchange={handleAccountChange}></lightning-combobox> 
+            </div>
+        </template>      
+    </lightning-card> <br/> 
+
+    <!--Load mounths in combo box-->
+    <template if:false={selectedAccount}>
+        <lightning-card title="Combo box with Months">         
+            <div class="slds-var-m-around_medium">                   
+                <p>Selected Combo box with Accounts</p>
+            </div>            
+        </lightning-card>
+    </template>    
+     
+    <template if:true={selectedAccount}>
+        <lightning-card title="Combo box with Months"> 
+            <template if:true={montsList}>
+                <div class="slds-var-m-around_medium">
+                    <lightning-combobox
+                    name="MonthsList"
+                    label="Months List"
+                    value={selectedMonths}
+                    placeholder="Select Month"
+                    options={montsList}
+                    onchange={handleMonthsChange}></lightning-combobox>
+                    <p>{selectedMonths}</p>
+                </div>
+            </template>    
+        </lightning-card><br/>
+    </template>
+
+    <template if:false={selectedAccount}>
+        <lightning-card title="Datatable Orders">
+            <template if:true={tableData}>
+                <div class="myTable">
+                <lightning-datatable class = "slds-max-medium-table_stacked"
+                key-field="Id"
+                data={tableData}
+                columns={columns}
+                hide-checkbox-column
+                ></lightning-datatable>
+            </div>
+            </template>       
+        </lightning-card>
+    </template>
+    
+    <template if:true={selectedAccount}>
+    <template if:false={selectedMonths}>
+        <lightning-card title="Datatable Account Orders">
+            <template if:true={tableAccountData}>
+                <div class="myTable">
+                <lightning-datatable class = "slds-max-medium-table_stacked"
+                key-field="Id"
+                data={tableAccountData}
+                columns={columns}
+                hide-checkbox-column
+                ></lightning-datatable>
+            </div>
+            </template>       
+        </lightning-card>
+    </template></template>
+
+    <template if:true={selectedAccount}>
+    <template if:true={selectedMonths}>
+        <lightning-card title="Datatable Account Months Orders">
+            <template if:true={tableAccountMonthsData}>
+                <div class="myTable">
+                <lightning-datatable class = "slds-max-medium-table_stacked"
+                key-field="Id"
+                data={tableAccountMonthsData}
+                columns={columns}
+                hide-checkbox-column
+                ></lightning-datatable>
+            </div>
+            </template>       
+        </lightning-card>
+    </template></template>
+    
+</template>   
