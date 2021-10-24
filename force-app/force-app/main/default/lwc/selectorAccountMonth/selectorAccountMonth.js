@@ -7,8 +7,8 @@ import getAccountMonthsOrder from '@salesforce/apex/DatatableOrderController.get
 
 const COLUMNS = [
     {label:'Order Name', fieldName:'Name'},
-    {label:'Account', fieldName:'Account__c'},
-    {label:'ITotal Amount', fieldName:'Total_Amount__c', type:'number'},
+    {label:'Account ID', fieldName:'Account__c'},
+    {label:'Total Amount', fieldName:'Total_Amount__c', type:'number'},
     {label:'Payment Due date', fieldName:'Payment_Due_date__c', type:'date'},
 ]
 
@@ -25,6 +25,7 @@ export default class SelectorAccountMonth extends LightningElement {
     tableAccountData;
     tableAccountMonthsData;
            
+    /*select accounts*/
     @wire(getAccounts) 
     retrieveAccounts({data, error}){
         let accountArray = new Array();
@@ -39,6 +40,7 @@ export default class SelectorAccountMonth extends LightningElement {
         this.accountList=accountArray;
     }
 
+    /*select months account*/
     @wire(getMonths, { selectedAccount: '$selectedAccount' }) 
     retrieveMounths({data, error}){
         let monthsArray = new Array();
@@ -53,6 +55,7 @@ export default class SelectorAccountMonth extends LightningElement {
         this.montsList=monthsArray;
     }
 
+    /*get order data*/
     @wire(getOrder)
     ordersHandler({data, error}){ 
         if(data){            
@@ -64,6 +67,7 @@ export default class SelectorAccountMonth extends LightningElement {
         }
     }
 
+    /*get order data select account*/
     @wire(getAccountOrder, { selectedAccount: '$selectedAccount' })
     ordersAccountHandler({data, error}){
         if(data){
@@ -76,6 +80,7 @@ export default class SelectorAccountMonth extends LightningElement {
         }
     }
 
+    /*get order data select account and month*/
     @wire(getAccountMonthsOrder, {
         selectedAccount: '$selectedAccount', 
         selectedMonths: '$selectedMonths' })
